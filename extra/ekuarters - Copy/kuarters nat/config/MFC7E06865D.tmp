@@ -1,0 +1,55 @@
+<?php
+	$host	= "localhost";
+	$user	= 'root';
+	$pass	= '';
+	$db		= 'kuarters';
+
+	$con	= mysql_connect($host,$user,$pass) or die ('Unable to connect');
+	mysql_select_db($db) or ('Unable to connect');
+?>
+
+<?php
+	require('Database.php');
+		//$db = Database::getInstance();
+		//$mysqli = $db->getConnection();
+		class DbFunction{
+
+			function login($loginid,$password){
+
+			  if(ctype_alpha($loginid) || ctype_alpha($password)){
+
+				echo "<script>alert('Either LoginId or Password is Missing')</script>";
+
+			  }		
+		   else{		
+			$db = Database::getInstance();
+			$mysqli = $db->getConnection();
+			$query = "SELECT * FROM tablepengguna where nokadpengenalan='$id' and katalaluan=? ";
+			$stmt= $mysqli->prepare($query);
+			if(false===$stmt){
+
+				trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
+			}
+
+			else{
+
+				$stmt->bind_param('ss',$loginid,$password);
+				$stmt->execute();
+				$stmt -> bind_result($loginid,$password);
+				$rs=$stmt->fetch();
+				if(!$rs)
+				{
+					echo "<script>alert('Invalid Details')</script>";
+					header('location:login.php');
+				}
+				else{
+
+					header('location:add-course.php');
+				}
+			}
+
+			}
+
+		}
+	}
+?>
