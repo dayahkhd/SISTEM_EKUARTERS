@@ -1,5 +1,5 @@
 # SISTEM_EKUARTERS
-Projek Jabatan Kesihatan Negeri Johor - web-based system
+Projek (Intern) Jabatan Kesihatan Negeri Johor - web-based system
 
 Software tools required:
 1) WAMPP server
